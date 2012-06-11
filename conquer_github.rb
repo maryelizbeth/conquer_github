@@ -17,7 +17,7 @@ class ConquerGithub
     process_payload(payload) if payload 
   end 
 
-  def process_payload(payload) 
+  def process_payload(payload)
     payload = JSON.parse(payload)
     return unless payload.keys.include?("repository")
     @repo = payload["repository"]["name"]
