@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'rack'
 require 'json'
 require 'chatbot_api', "1.0", git: "git://github.com/HungryAcademyTeam4/chatbot_api.git"
 require 'erb'
@@ -58,8 +59,7 @@ class ConquerGithub
     options[:proxy] = settings['proxy'] || ENV[options[:ssl] ? 'https_proxy' : 'http_proxy']
     
     #Incomplete method for posting to Chatbot via API
-    github = ChatbotApi::Client.new
-    github.create_message(@repo)
+    github = Message.create()
   end 
 
   def process_commit 
