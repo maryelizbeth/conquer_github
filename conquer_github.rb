@@ -61,5 +61,13 @@ class ConquerGithub
   end 
 
   def process_commit 
+    @repo = commit["repo"]
+    proc = Proc.new do 
+      commit
+    end 
+    template.each do |action| 
+      method, content = Array(action).first 
+      @room.send(method, content.result(proc), :join => false)
+    end 
   end 
 end 
