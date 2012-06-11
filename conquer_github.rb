@@ -57,7 +57,7 @@ class ConquerGithub
     options[:proxy] = settings['proxy'] || ENV[options[:ssl] ? 'https_proxy' : 'http_proxy']
     
     github = ChatbotApi::Client.new
-    github.create_message(attributes)
+    github.create_message(@repo)
   end 
 
   def process_commit 
