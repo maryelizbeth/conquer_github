@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'json'
 require 'chatbot_api', "1.0", git: "git://github.com/HungryAcademyTeam4/chatbot_api.git"
 require 'erb'
@@ -15,7 +16,7 @@ class ConquerGithub
     process_payload(payload) if payload 
   end 
 
-  def process_payload 
+  def process_payload(payload) 
     payload = JSON.parse(payload)
     return unless payload.keys.include?("repository")
     @repo = payload["repository"]["name"]
