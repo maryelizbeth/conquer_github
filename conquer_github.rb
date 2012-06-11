@@ -57,6 +57,7 @@ class ConquerGithub
     options[:ssl] = settings['ssl'] || false 
     options[:proxy] = settings['proxy'] || ENV[options[:ssl] ? 'https_proxy' : 'http_proxy']
     
+    #Incomplete method for posting to Chatbot via API
     github = ChatbotApi::Client.new
     github.create_message(@repo)
   end 
