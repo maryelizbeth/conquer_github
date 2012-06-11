@@ -56,8 +56,8 @@ class ConquerGithub
     options[:ssl] = settings['ssl'] || false 
     options[:proxy] = settings['proxy'] || ENV[options[:ssl] ? 'https_proxy' : 'http_proxy']
     
-    #FIND CHATBOT/DRAWBRIDGE ROOM
-
+    github = ChatbotApi::Client.new
+    github.create_message(attributes)
   end 
 
   def process_commit 
