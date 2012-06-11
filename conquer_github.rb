@@ -31,12 +31,33 @@ class ConquerGithub
     commits.sort_by { |c| c["timestamp"] }.each { |c| process_commit(c) }
   end 
 
-  def connect
-
+  def template
+    @template ||= template_for(settings['template'])
   end 
 
-  def template
+  def template_for 
+    case raw 
+    when String 
+      template_for(:speak => raw )
+    when Array 
+      raw.map { |1| template_for(1) }.flatten
+    when Hash
+      method, content = Array(raw).first 
+      {method => content.is_a?(String) ? ERB.new(content) : content }
+    when nil 
+      template(DEFAULT_TEMPLATE)
+    else 
+      raise ArgumentError, "Invalid Template #{raw.inspect}"
+    end
+  end 
+
+  def connect
+    options = {} 
+    options[:ssl] = settings['ssl'] || false 
+    options[:proxy] = settings['proxy'] || ENV[options[:ssl] ? 'https_proxy' : 'http_proxy']
     
+    #FIND CHATBOT/DRAWBRIDGE ROOM
+
   end 
 
   def process_commit 
