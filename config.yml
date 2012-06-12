@@ -1,0 +1,4 @@
+repo-name:
+  ssl: true
+  template: "[<%= commit['repo'] %>] <%= commit['message'] %> - <%= commit['author']['name'] %> (<%= commit['url'] %>)"
+
